@@ -118,6 +118,7 @@ def download_video_series(vid_links):
         i += 1
 
     for file in glob.glob("*.mp4"):
+        time.sleep(3)
         os.remove(file)
     print("All videos set up successfully!")
     return

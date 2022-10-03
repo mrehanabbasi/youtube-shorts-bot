@@ -37,7 +37,6 @@ import os
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
 
 options = webdriver.ChromeOptions()
 # options.add_experimental_option('excludeSwitches', ['enable-logging'])
@@ -66,8 +65,7 @@ if int(answer) == 1:
         "\033[1;33;40m How many times you want to upload this video ---> ")
 
     for i in range(int(howmany)):
-        bot = webdriver.Chrome(service=Service(ChromeDriverManager().install()),
-                               options=options)
+        bot = webdriver.Chrome(service=Service("chromedriver"), options=options)
 
         bot.get("https://studio.youtube.com")
         time.sleep(3)
@@ -102,14 +100,15 @@ elif int(answer) == 2:
 
     for path in os.listdir(DIR_PATH):
         if os.path.isfile(os.path.join(DIR_PATH, path)):
-            COUNT += 1
+            ext = os.path.splitext(os.path.join(DIR_PATH, path))[-1].lower()
+            if ext == ".mp4":
+                COUNT += 1
     print("   ", COUNT,
           " Videos found in the videos folder, ready to upload...")
     time.sleep(6)
 
     for i in range(COUNT):
-        bot = webdriver.Chrome(service=Service(ChromeDriverManager().install()),
-                               options=options)
+        bot = webdriver.Chrome(service=Service("chromedriver"), options=options)
 
         bot.get("https://studio.youtube.com")
         time.sleep(3)
