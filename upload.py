@@ -66,6 +66,7 @@ if int(answer) == 1:
 
     for i in range(int(howmany)):
         bot = webdriver.Chrome(service=Service("chromedriver"), options=options)
+        bot.maximize_window()
 
         bot.get("https://studio.youtube.com")
         time.sleep(3)
@@ -109,6 +110,7 @@ elif int(answer) == 2:
 
     for i in range(COUNT):
         bot = webdriver.Chrome(service=Service("chromedriver"), options=options)
+        bot.maximize_window()
 
         bot.get("https://studio.youtube.com")
         time.sleep(3)
